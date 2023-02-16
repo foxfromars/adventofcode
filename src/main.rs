@@ -1,9 +1,10 @@
 use std::fs;
 
 fn main() {
-    let fileString = fs::read_to_string("./assets/DayOne-INPUT")
+    let file_string = fs::read_to_string("./assets/input") // the path to the .txt file of the
+        // input
         .expect("Should have been able to read the file");
-    let values: Vec<&str> = fileString.split("\n").collect();
+    let values: Vec<&str> = file_string.split("\n").collect();
 
     let mut elfs: Vec<i32> = vec![];
     let mut temp: i32 = 0;
@@ -17,15 +18,15 @@ fn main() {
         temp = temp + i;
     }
 
-    let mut result: (i32, i32) = (0, 0);
+    let mut result = 0;
 
-    let i: i32 = 0;
+    let mut i: usize = 0;
 
-    while i < elfs.len() as i32 {
-        if result.0 < elfs[i] {
-            result = (elfs[i], i);
-        } 
+    while i < elfs.len() {
+        if result < elfs[i] {
+            result = elfs[i];
+        }
+        i += 1;
     }
-
-    println!("{}", result.1);
+    println!("{}", result);
 }
